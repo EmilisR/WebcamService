@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -10,15 +11,16 @@ namespace WebcamService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
-    public interface IService1
+    public interface IWebcamService
     {
 
         [OperationContract]
-        string GetData(int value);
+        [WebGet(UriTemplate = "Video/{isHD}")]
+        string GetVideoUrl(string isHD);
 
         [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
-
+        [WebGet(UriTemplate = "Video/Snap")]
+        Bitmap GetSnap();
         // TODO: Add your service operations here
     }
 
